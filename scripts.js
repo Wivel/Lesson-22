@@ -1,12 +1,19 @@
-
-function Clock() {
-    let
-        elem            = document.getElementById('display'),
-        now             = new Date();
-        elem.innerHTML  = now.getHours()+':'+now.getMinutes()+':'+now.getSeconds();
-        Clock();
-}
+let id;
 
 function Timer() {
-    window.setInterval(Clock,1000);
+    id = window.setInterval(go, 200);
+    document.getElementById('button').disabled = true;
+}
+
+function go() {
+    let
+        number,
+        display = document.getElementById('display'),
+        Stop = document.getElementById('stop');
+    display.innerHTML = parseInt(display.innerHTML) - 1;
+    number = +display.innerHTML;
+    if (number == 0) {
+        window.clearInterval(id);
+        Stop.innerHTML = 'Расчёт окончен';
+    }
 }
